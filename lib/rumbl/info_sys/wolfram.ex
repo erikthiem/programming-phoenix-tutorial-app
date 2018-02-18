@@ -24,10 +24,12 @@ defmodule Rumbl.InfoSys.Wolfram do
   end
 
   defp fetch_xml(query_str) do
-    {:ok, {_,_,body}} = :httpc.request(
-      String.to_charlist("http://api.wolframalpha.com/v2/query" <>
+    HTTPoison.start
+    options = [recv_timeout: 10_000]
+    {:ok, %HTTPoison.Response{body: body, status_code: 200}} = HTTPoison.get(
+      "http://api.wolframalpha.com/v2/query" <>
         "?appid=#{app_id()}" <>
-        "&input=#{URI.encode(query_str)}&format=plaintext"))
+        "&input=#{URI.encode(query_str)}&format=plaintext", [], options)
     body
   end
 
