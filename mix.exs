@@ -40,6 +40,7 @@ defmodule Rumbl.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
      {:httpoison, "~> 1.0"},
+     {:distillery, "~> 1.0.0"},
      {:sweet_xml, "~> 0.5.0"} ]
   end
 
